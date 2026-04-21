@@ -1,4 +1,5 @@
 import gymnasium as gym
+import envs
 from stable_baselines3 import DQN, A2C, PPO
 from utils.initialization import config_loader
 
@@ -10,10 +11,10 @@ env_name = 'GridWorld-v0'
 # env_name = 'Pusher-v5'
 
 # Algorithm name
-algorithm = 'ppo'
+algorithm = 'PPO'
 
 # Load configuration from YAML file
-policy_name, policy_kwargs, alg_params, n_train_steps = config_loader(env_name, algorithm)
+policy_name, policy_kwargs, alg_params, n_train_steps = config_loader(env_name, algorithm.lower())
 
 # Create environment
 env = gym.make(env_name)

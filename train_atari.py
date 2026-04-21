@@ -11,14 +11,20 @@ gym.register_envs(ale_py)
 env_name = 'ALE/Breakout-v5'
 
 # Algorithm name
-algorithm = 'ppo'
+algorithm = 'PPO'
+
+# Number of parallel environments to use for training
+n_envs = 8
+
+# Number of frame stacks for Atari environments
+n_stack = 4
 
 # Load configuration from YAML file
-policy_name, policy_kwargs, alg_params, n_train_steps = config_loader(env_name, algorithm)
+policy_name, policy_kwargs, alg_params, n_train_steps = config_loader(env_name, algorithm.lower())
 
 # Create environment
-env = make_atari_env(env_name, n_envs=8)
-env = VecFrameStack(env, n_stack=4) # Stack 4 frames
+env = make_atari_env(env_name, n_envs=n_envs)
+env = VecFrameStack(env, n_stack=n_stack)
 
 # Instantiate the agent
 log = "trained_models/" + env_name + "/"

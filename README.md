@@ -36,7 +36,7 @@ To correctly set up the software, please follow the present instructions, intend
     ```
     and then install all packages required by this project via pip:
     ```bash
-    pip install tensorboard swig box2d pygame ale-py gymnasium[all] stable-baselines3
+    pip install tensorboard swig box2d pygame ale-py gymnasium[all] stable-baselines3 pyyaml
     ```
 
 ##  USAGE
@@ -59,7 +59,7 @@ To correctly set up the software, please follow the present instructions, intend
 
 - To check the training progress, you can use TensorBoard by running the following command in the terminal while the training is still running:
     ```bash
-    tensorboard --logdir=logs/
+    tensorboard --logdir trained_models/
     ```
     and then opening the URL `http://localhost:6006/` in your web browser.
 
