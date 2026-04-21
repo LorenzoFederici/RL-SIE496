@@ -16,7 +16,7 @@ model_path = "trained_models/" + env_name + "/"
 model_name = "model-ppo"
 
 # Rendering mode
-render_mode = "rgb_array"  # Use "human" to render the environment to the screen, use "rgb_array" if you want to save a GIF instead
+render_mode = "human"  # Use "human" to render the environment to the screen, use "rgb_array" if you want to save a GIF instead
 if render_mode == "rgb_array":
     gif_path = model_path + f"render-{model_name}.gif"
 
