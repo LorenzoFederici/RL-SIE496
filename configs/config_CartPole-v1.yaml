@@ -1,0 +1,21 @@
+# Configuration for CartPole-v1
+n_train_steps: 500000
+
+ppo_params:
+  learning_rate: 1e-3
+  n_steps: 2048
+  batch_size: 64
+  n_epochs: 20
+  gamma: 0.99
+  gae_lambda: 0.95
+  clip_range: 0.2
+  ent_coef: 0.0
+  verbose: 1
+
+policy:
+  name: "MlpPolicy"
+  kwargs:
+    activation_fn: "ReLU"
+    net_arch:
+      pi: [64, 64]
+      vf: [64, 64]

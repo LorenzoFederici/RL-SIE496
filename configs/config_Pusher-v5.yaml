@@ -1,0 +1,21 @@
+# Configuration for Pusher-v5
+n_train_steps: 1500000
+
+ppo_params:
+  learning_rate: 3e-4
+  n_steps: 4096
+  batch_size: 256
+  n_epochs: 20
+  gamma: 0.99
+  gae_lambda: 0.98
+  clip_range: 0.2
+  ent_coef: 0.0
+  verbose: 1
+
+policy:
+  name: "MlpPolicy"
+  kwargs:
+    activation_fn: "ReLU"
+    net_arch:
+      pi: [400, 300]
+      vf: [400, 300]

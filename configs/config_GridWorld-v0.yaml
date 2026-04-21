@@ -1,0 +1,21 @@
+# Configuration for GridWorld-v0
+n_train_steps: 1000000
+
+ppo_params:
+  learning_rate: 2.5e-4
+  n_steps: 5000
+  batch_size: 500
+  n_epochs: 30
+  gamma: 0.99
+  gae_lambda: 0.95
+  clip_range: 0.1
+  ent_coef: 0.01
+  verbose: 1
+
+policy:
+  name: "MlpPolicy"
+  kwargs:
+    activation_fn: "ReLU"
+    net_arch:
+      pi: [64, 64, 64]
+      vf: [64, 64, 64]

@@ -1,6 +1,7 @@
 # REINFORCEMENT LEARNING FOR ROBOT CONTROL
 
 This repository is intended for the students of Prof. Curti's Robotic Systems class (SIE 496/596), offered by the Systems & Industrial Engineering Department at the University of Arizona.
+
 The aim of this repository is to show how to formulate a decision-making (or control) problem as a Markov decision process (MDP) by exploiting the OpenAI [Gymnasium](https://gymnasium.farama.org/) Python library, and how to train a deep neural network to solve this problem via a Reinforcement Learning (RL) algorithm using the [Stable-Baselines3](https://stable-baselines3.readthedocs.io/en/master/guide/quickstart.html) Python library.
 
 ## INSTALLATION
@@ -39,6 +40,8 @@ To correctly set up the software, please follow the present instructions, intend
     ```
 
 ##  USAGE
+
+- To create a new RL environment, create a new python file within the `envs/` directory and create the new environment class, inheriting from `gymnasium.Env`, by following the structure of the example environments `CustomEnv` and `GridWorldEnv` within the `custom_env.py` and `gridworld_env.py` files, respecively. Then, register the new environment in the `__init__.py` file within the `envs/` directory by following the structure of the example environments. Additionally, create a corresponding YAML configuration file named `config_<env_name>.yaml` within the `configs/` folder with the RL algorithm hyperparameters and policy settings, following the structure of the provided example configs.
 
 - To test an environment with a random agent, specify the environment name within the script `run_env.py`. Then, run the script via:
     ```bash
