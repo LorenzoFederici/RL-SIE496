@@ -20,10 +20,10 @@ n_envs = 8
 n_stack = 4
 
 # Load configuration from YAML file
-policy_name, policy_kwargs, alg_params, n_train_steps = config_loader(env_name, algorithm.lower())
+policy_name, policy_kwargs, alg_params, n_train_steps, env_configs = config_loader(env_name, algorithm.lower())
 
 # Create environment
-env = make_atari_env(env_name, n_envs=n_envs)
+env = make_atari_env(env_name, n_envs=n_envs, env_kwargs=env_configs)
 env = VecFrameStack(env, n_stack=n_stack)
 
 # Instantiate the agent

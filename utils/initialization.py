@@ -38,7 +38,7 @@ def resolve_feature_extractor(name):
 
 def config_loader(environment, algorithm="ppo"):
     
-    """Load policy settings, algorithm parameters, and train steps from YAML config."""
+    """Load environment, policy, algorithm parameters, and train steps from YAML config."""
     
     config_path = f"configs/config_{environment}.yaml"
     with open(config_path, "r") as f:
@@ -50,6 +50,13 @@ def config_loader(environment, algorithm="ppo"):
     n_train_steps = config.get("n_train_steps")
     if n_train_steps is None:
         raise KeyError(f"Missing 'n_train_steps' in {config_path}")
+
+    env_configs = config.get("env_configs", {})
+    if env_configs is None:
+        env_configs = {}
+    if not isinstance(env_configs, dict):
+        raise ValueError(f"'env_configs' must be a dictionary in {config_path}")
+    env_configs = env_configs.copy()
 
     alg_params = config.get(f"{algorithm}_params")
     if alg_params is None:
@@ -92,4 +99,4 @@ def config_loader(environment, algorithm="ppo"):
                 "vf": policy_kwargs["net_arch"]["vf"],
             }
 
-    return policy_name, policy_kwargs, alg_params, int(n_train_steps)
+    return policy_name, policy_kwargs, alg_params, int(n_train_steps), env_configs

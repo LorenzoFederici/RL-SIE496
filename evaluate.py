@@ -3,11 +3,11 @@ import envs
 from stable_baselines3 import DQN, A2C, PPO
 from stable_baselines3.common.evaluation import evaluate_policy
 import imageio.v2 as imageio
+from utils.initialization import config_loader
 
 # Envronment name
 env_name = 'GridWorld-v0'
 # env_name = 'CartPole-v1'
-# env_name = 'Pendulum-v1'
 # env_name = 'LunarLander-v3'
 # env_name = 'Pusher-v5'
 
@@ -15,13 +15,17 @@ env_name = 'GridWorld-v0'
 model_path = "trained_models/" + env_name + "/"
 model_name = "model-ppo"
 
+# Load environment configuration from YAML file
+_, _, _, _, env_configs = config_loader(env_name, "ppo")
+
 # Rendering mode
-render_mode = "human"  # Use "human" to render the environment to the screen, use "rgb_array" if you want to save a GIF instead
+render_mode = "rgb_array"  # Use "human" to render the environment to the screen, use "rgb_array" if you want to save a GIF instead
 if render_mode == "rgb_array":
     gif_path = model_path + f"render-{model_name}.gif"
 
 # Create environment
-env = gym.make(env_name, render_mode=render_mode)
+env_kwargs = {**env_configs, "render_mode": render_mode}
+env = gym.make(env_name, **env_kwargs)
 
 # Load the trained agent
 model = PPO.load(model_path + model_name)

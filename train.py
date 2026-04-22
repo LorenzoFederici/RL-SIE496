@@ -6,7 +6,6 @@ from utils.initialization import config_loader
 # Environment name
 env_name = 'GridWorld-v0'
 # env_name = 'CartPole-v1'
-# env_name = 'Pendulum-v1'
 # env_name = 'LunarLander-v3'
 # env_name = 'Pusher-v5'
 
@@ -14,10 +13,10 @@ env_name = 'GridWorld-v0'
 algorithm = 'PPO'
 
 # Load configuration from YAML file
-policy_name, policy_kwargs, alg_params, n_train_steps = config_loader(env_name, algorithm.lower())
+policy_name, policy_kwargs, alg_params, n_train_steps, env_configs = config_loader(env_name, algorithm.lower())
 
 # Create environment
-env = gym.make(env_name)
+env = gym.make(env_name, **env_configs)
 
 # Instantiate the agent
 log = "trained_models/" + env_name + "/"
